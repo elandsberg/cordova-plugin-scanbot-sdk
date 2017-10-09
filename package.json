@@ -1,0 +1,35 @@
+{
+  "name": "cordova-plugin-scanbot-sdk",
+  "version": "1.2.5",
+  "description": "Cordova Plugin for Scanbot SDK",
+  "cordova": {
+    "id": "cordova-plugin-scanbot-sdk",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "scanbot",
+    "sdk",
+    "camera",
+    "scanner",
+    "scanning",
+    "document detection",
+    "edge detection",
+    "cropping",
+    "pdf",
+    "pdf creation",
+    "image optimization",
+    "image filter",
+    "ocr",
+    "optical character recognition",
+    "cordova",
+    "plugin",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "doo GmbH",
+  "homepage": "https://scanbot.io/sdk.html"
+}

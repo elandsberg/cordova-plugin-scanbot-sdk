@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-scanbot-sdk" version="1.2.5">
+
+  <name>Scanbot SDK Cordova Plugin</name>
+  <description>Cordova Plugin for Scanbot SDK</description>
+  <license></license>
+  <keywords>scanbot,sdk,camera,scanner,scanning,document detection,edge detection,cropping,pdf,pdf creation,image optimization,image filter,ocr,optical character recognition,cordova,plugin</keywords>
+
+  <js-module src="www/ScanbotSdk.js" name="ScanbotSdk">
+    <clobbers target="ScanbotSdk" />
+  </js-module>
+
+  <js-module src="www/ScanbotSdkUi.js" name="ScanbotSdkUi">
+    <clobbers target="ScanbotSdkUi" />
+  </js-module>
+
+
+  <!-- Android -->
+  <platform name="android">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ScanbotSdk">
+        <param name="android-package" value="io.scanbot.sdk.plugin.cordova.ScanbotSdkPlugin"/>
+      </feature>
+      <feature name="ScanbotSdkUi">
+        <param name="android-package" value="io.scanbot.sdk.plugin.cordova.ScanbotCameraPlugin"/>
+      </feature>
+    </config-file>
+
+    <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+      <application android:largeHeap="true" />
+    </edit-config>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <activity android:name="io.scanbot.sdk.plugin.cordova.ScanbotCameraActivity"
+                android:theme="@style/Theme.AppCompat" />
+      <activity android:name="io.scanbot.sdk.plugin.cordova.ScanbotEditImageActivity"
+                android:theme="@style/Theme.AppCompat" />
+      <meta-data android:name="ocr_blobs_path" android:value="scanbot-sdk/di/tessdata/" />
+      <meta-data android:name="language_classifier_blob_path" android:value="scanbot-sdk/di/" />
+    </config-file>
+
+    <!-- Permissions: -->
+    <config-file target="AndroidManifest.xml" parent="/*">
+      <uses-permission android:name="android.permission.CAMERA" />
+      <uses-feature android:name="android.hardware.camera" />
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    </config-file>
+
+    <!-- Java source files/dirs: -->
+    <source-file src="src/android/java/io/scanbot/sdk/plugin" target-dir="src/io/scanbot/sdk" />
+
+    <!-- Default OCR resources files: -->
+    <source-file src="src/android/assets/scanbot-sdk/di/languageClassifier2.bin" target-dir="assets/scanbot-sdk/di" />
+    <source-file src="src/android/assets/scanbot-sdk/di/tessdata" target-dir="assets/scanbot-sdk/di" />
+
+    <!-- Resource files/dirs: -->
+    <source-file src="src/android/res/layout/action_bar_edit_polygon_view.xml" target-dir="res/layout" />
+    <source-file src="src/android/res/layout/scanbot_camera_view.xml" target-dir="res/layout" />
+    <source-file src="src/android/res/layout/scanbot_edit_image_view.xml" target-dir="res/layout" />
+
+    <source-file src="src/android/res/layout-land/scanbot_camera_view.xml" target-dir="res/layout-land" />
+
+    <source-file src="src/android/res/drawable/ui_ico_flash.xml" target-dir="res/drawable" />
+
+    <source-file src="src/android/res/drawable-hdpi/ui_action_checkmark.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_cam_ico_flash.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_cam_ico_flash_active.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_cam_rotation_h.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_cam_rotation_v.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_cam_shutter.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_crop_corner_handle.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_crop_magnifier.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_crop_side_handle.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_inner33.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_inner33_active.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_inner66.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_inner66_active.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_outer.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_snapping_button_outer_active.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_scan_automatic_active.png" target-dir="res/drawable-hdpi" />
+    <source-file src="src/android/res/drawable-hdpi/ui_scan_automatic.png" target-dir="res/drawable-hdpi" />
+
+    <source-file src="src/android/res/drawable-mdpi/ui_action_checkmark.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_cam_ico_flash.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_cam_ico_flash_active.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_cam_rotation_h.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_cam_rotation_v.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_cam_shutter.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_crop_corner_handle.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_crop_magnifier.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_crop_side_handle.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_inner33.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_inner33_active.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_inner66.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_inner66_active.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_outer.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_snapping_button_outer_active.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_scan_automatic_active.png" target-dir="res/drawable-mdpi" />
+    <source-file src="src/android/res/drawable-mdpi/ui_scan_automatic.png" target-dir="res/drawable-mdpi" />
+
+    <source-file src="src/android/res/drawable-xhdpi/ui_action_checkmark.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_cam_ico_flash.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_cam_ico_flash_active.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_cam_rotation_h.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_cam_rotation_v.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_cam_shutter.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_crop_corner_handle.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_crop_magnifier.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_crop_side_handle.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_inner33.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_inner33_active.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_inner66.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_inner66_active.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_outer.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_snapping_button_outer_active.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_scan_automatic_active.png" target-dir="res/drawable-xhdpi" />
+    <source-file src="src/android/res/drawable-xhdpi/ui_scan_automatic.png" target-dir="res/drawable-xhdpi" />
+
+    <source-file src="src/android/res/drawable-xxhdpi/ui_action_checkmark.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_ico_cancel.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_ico_flash.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_ico_flash_active.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_rotation_h.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_rotation_v.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_cam_shutter.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_crop_corner_handle.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_crop_magnifier.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_crop_side_handle.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_edit_ico_cancel.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_inner33.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_inner33_active.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_inner66.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_inner66_active.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_outer.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_snapping_button_outer_active.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_scan_automatic_active.png" target-dir="res/drawable-xxhdpi" />
+    <source-file src="src/android/res/drawable-xxhdpi/ui_scan_automatic.png" target-dir="res/drawable-xxhdpi" />
+
+    <!-- Scanbot Gradle extra settings: -->
+    <framework src="src/android/build-extras-sb.gradle" custom="true" type="gradleReference" />
+
+    <!-- Dependencies (libs, frameworks, etc): -->
+    <framework src="io.scanbot:sdk-package-2:1.23.3" />
+    <framework src="com.android.support:appcompat-v7:24+" />
+  </platform>
+
+
+  <!-- iOS -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ScanbotSdk">
+        <param name="ios-package" value="ScanbotSdkPlugin" />
+      </feature>
+      <feature name="ScanbotSdkUi">
+        <param name="ios-package" value="ScanbotCameraPlugin"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/ScanbotSdkPlugin.h" />
+    <source-file src="src/ios/ScanbotSdkPlugin.m" />
+    <header-file src="src/ios/ScanbotCameraPlugin.h" />
+    <source-file src="src/ios/ScanbotCameraPlugin.m" />
+    <header-file src="src/ios/ScanbotCameraViewController.h" />
+    <source-file src="src/ios/ScanbotCameraViewController.m" />
+    <header-file src="src/ios/HandyJSONParameters.h" />
+    <source-file src="src/ios/HandyJSONParameters.m" />
+    <header-file src="src/ios/ImageUtils.h" />
+    <source-file src="src/ios/ImageUtils.m" />
+    <header-file src="src/ios/SharedConfiguration.h" />
+    <source-file src="src/ios/SharedConfiguration.m" />
+    <header-file src="src/ios/LoggingUtils.h" />
+    
+    <!-- Categories -->
+    <header-file src="src/ios/Categories/SBSDKPolygon+JSON.h" target-dir="Categories" />
+    <source-file src="src/ios/Categories/SBSDKPolygon+JSON.m" target-dir="Categories" />
+    <header-file src="src/ios/Categories/UIColor+JSON.h" target-dir="Categories" />
+    <source-file src="src/ios/Categories/UIColor+JSON.m" target-dir="Categories" />
+    <header-file src="src/ios/Categories/SBSDKOCRResult+JSON.h" target-dir="Categories" />
+    <source-file src="src/ios/Categories/SBSDKOCRResult+JSON.m" target-dir="Categories" />
+    <header-file src="src/ios/Categories/SBSDKPageAnalyzerResult+JSON.h" target-dir="Categories" />
+    <source-file src="src/ios/Categories/SBSDKPageAnalyzerResult+JSON.m" target-dir="Categories" />
+
+    <!-- Resources -->
+    <resource-file src="src/ios/Images/ui_action_close/ui_action_close.png" />
+    <resource-file src="src/ios/Images/ui_action_close/ui_action_close@2x.png" />
+    <resource-file src="src/ios/Images/ui_action_close/ui_action_close@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark.png" />
+    <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark@2x.png" />
+    <resource-file src="src/ios/Images/ui_action_checkmark/ui_action_checkmark@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on.png" />
+    <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on@2x.png" />
+    <resource-file src="src/ios/Images/ui_flash_on/ui_flash_on@3x.png" />
+
+    <resource-file src="src/ios/Images/ui_flash_off/ui_flash_off.png" />
+    <resource-file src="src/ios/Images/ui_flash_off/ui_flash_off@2x.png" />
+    <resource-file src="src/ios/Images/ui_flash_off/ui_flash_off@3x.png" />
+
+    <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig.png" />
+    <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig@2x.png" />
+    <resource-file src="src/ios/Images/ui_scan_handlebig/ui_scan_handlebig@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall.png" />
+    <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall@2x.png" />
+    <resource-file src="src/ios/Images/ui_scan_handlesmall/ui_scan_handlesmall@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier.png" />
+    <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier@2x.png" />
+    <resource-file src="src/ios/Images/ui_capture_edit_magnifier/ui_capture_edit_magnifier@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off.png" />
+    <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off@2x.png" />
+    <resource-file src="src/ios/Images/ui_autosnap_off/ui_autosnap_off@3x.png" />
+    
+    <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on.png" />
+    <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on@2x.png" />
+    <resource-file src="src/ios/Images/ui_autosnap_on/ui_autosnap_on@3x.png" />
+    
+    <resource-file src="src/ios/Frameworks/SBSDKLanguageData/" />
+    
+    <!-- Dependencies - frameworks: -->
+    <framework src="src/ios/Frameworks/ScanbotSDK.framework" custom="true" embed="true" />
+
+    <!-- Required permission settings since iOS 10 -->
+    <preference name="CAMERA_USAGE_DESCRIPTION" default=" " />
+    <config-file target="*-Info.plist" parent="NSCameraUsageDescription">
+      <string>$CAMERA_USAGE_DESCRIPTION</string>
+    </config-file>
+    <preference name="PHOTOLIBRARY_USAGE_DESCRIPTION" default=" " />
+    <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+      <string>$PHOTOLIBRARY_USAGE_DESCRIPTION</string>
+    </config-file>
+
+    <config-file target="*-Info.plist" parent="UIFileSharingEnabled">
+      <true/>
+    </config-file>
+
+  </platform>
+
+</plugin>

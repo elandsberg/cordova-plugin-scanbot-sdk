@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context=".ScanbotCameraActivity">
+
+    <net.doo.snap.camera.ScanbotCameraView
+        android:id="@+id/scanbotCameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <net.doo.snap.ui.PolygonView
+            android:id="@+id/scanbotPolygonView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </net.doo.snap.camera.ScanbotCameraView>
+
+    <ImageButton
+        android:id="@+id/cancelCameraButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ui_cam_ico_cancel"
+        android:layout_gravity="top|left"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent" />
+
+    <ImageView
+        android:id="@+id/rotateDeviceImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:visibility="gone" />
+
+    <ImageButton
+        android:id="@+id/snapImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent" />
+
+    <CheckBox
+        android:id="@+id/flashToggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|right"
+        android:layout_margin="16dp"
+        android:button="@drawable/ui_ico_flash"
+        android:background="@android:color/transparent"
+        android:checked="false" />
+
+    <CheckBox
+        android:id="@+id/autosnapToggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:background="@android:color/transparent"
+        android:button="@android:color/transparent"
+        android:checked="false" />
+
+    <ProgressBar
+        android:id="@+id/processPictureProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleLarge"
+        android:visibility="gone"/>
+
+</FrameLayout>
